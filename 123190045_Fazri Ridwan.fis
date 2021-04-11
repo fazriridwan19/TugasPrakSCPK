@@ -1,0 +1,56 @@
+[System]
+Name='PeformaPC'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='sinyal'
+Range=[0 6]
+NumMFs=2
+MF1='lemah':'trimf',[-2.5 0 5]
+MF2='kuat':'trimf',[1 6 14]
+
+[Input2]
+Name='fps'
+Range=[0 120]
+NumMFs=3
+MF1='rendah':'gaussmf',[20.67 0]
+MF2='menengah':'gaussmf',[14.86 60]
+MF3='tinggi':'gaussmf',[20.81 120]
+
+[Input3]
+Name='suhu'
+Range=[10 90]
+NumMFs=2
+MF1='dingin':'trimf',[-23.33 10 70]
+MF2='panas':'trimf',[70 90 123.3]
+
+[Output1]
+Name='peforma'
+Range=[0 100]
+NumMFs=3
+MF1='buruk':'trimf',[-41.67 0 40]
+MF2='sedang':'trimf',[30 50 70]
+MF3='baik':'trimf',[60 100 141.7]
+
+[Rules]
+1 1 2, 1 (1) : 1
+1 1 1, 1 (1) : 1
+1 2 2, 1 (1) : 1
+1 2 1, 2 (1) : 1
+1 3 2, 2 (1) : 1
+1 3 1, 2 (1) : 1
+2 1 2, 1 (1) : 1
+2 1 1, 1 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 1, 3 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 1, 3 (1) : 1
